@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         alignSelf:'center',
-        fontWeight:'400',
+        fontFamily: FONT_FAMILY.Tenor,
         fontSize: scale(18),
         lineHeight:scale(18),
     },
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
         fontSize: scale(36),
         alignSelf: 'center',
         justifyContent: 'center',
-        fontWeight: '400',
+        fontFamily: FONT_FAMILY.Tenor,
         zIndex: 2,
     },
     wrapDot: {
@@ -108,7 +108,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     skipText: {
-        fontSize: scale(17),
+        fontSize: scale(23),
+        fontFamily: FONT_FAMILY.Tenor,
         alignSelf: 'center',
     },
 })

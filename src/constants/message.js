@@ -2,6 +2,7 @@ import {Modal, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import React from 'react';
 import scale from './responsive';
 import UnderLine from './underline';
+import FONT_FAMILY from './fonts';
 
 const Message = props => {
   // take in visible(state), title, message, click cancel
@@ -20,11 +21,11 @@ const Message = props => {
             ]}
             style={{
               color:
-                props.title === 'Error' ? 'red' : 'black',
+                props.title === 'Error' ? 'red' : '#744ACC',
             }}
             lineColor={{
               backgroundColor:
-                props.title === 'Error' ? 'red' : 'black',
+                props.title === 'Error' ? 'red' : '#744ACC',
             }}></UnderLine>
           <View style={styles.noticeMessage}>
             <View
@@ -37,7 +38,7 @@ const Message = props => {
               <Text
                 style={[
                   styles.messageText,
-                  props.fail ? {color: 'red'} : null,
+                  props.title === 'Error' ? {color: 'red'} : null,
                 ]}
                 numberOfLines={5}>
                 {props.message}
@@ -77,17 +78,18 @@ const styles = StyleSheet.create({
   noticeBox: {
     width: scale(315),
     height: scale(322),
-    backgroundColor: 'black',
+    backgroundColor: 'white',
     overflow: 'hidden',
   },
   noticeTitle: {
-    backgroundColor: 'black',
+    backgroundColor: 'white',
     width: '100%',
     paddingHorizontal: scale(30),
     height: scale(66),
   },
   titleText: {
-    color: 'black',
+    color: '#744ACC',
+    fontFamily: FONT_FAMILY.Tenor,
     fontSize: scale(24),
     alignSelf: 'center',
   },
@@ -96,7 +98,8 @@ const styles = StyleSheet.create({
     padding: scale(20),
   },
   messageText: {
-    color: 'black',
+    color: '#744ACC',
+    fontFamily: FONT_FAMILY.Tenor,
     fontSize: scale(20),
     textAlign: 'center',
   },
@@ -105,13 +108,14 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   buttonBox: {
-    backgroundColor: 'black',
+    backgroundColor: '#744ACC',
     height: scale(53),
     width: scale(278),
     justifyContent: 'center',
     alignItems: 'center',
   },
   buttonText: {
-    color: 'black',
+    fontFamily: FONT_FAMILY.Tenor,
+    color: 'white',
   },
 });

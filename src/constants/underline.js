@@ -23,7 +23,7 @@ const UnderLine = props => {
               height: 1,
               borderBottomWidth: 0.3,
               marginTop: scale(4),
-              borderColor: isChoosing ? '#744ACC' : 'grey',
+              borderColor: text === "Error" ? 'red' : '#744ACC',
             }}
           />
         </View>
@@ -47,7 +47,7 @@ const UnderLine = props => {
               height: 1,
               borderBottomWidth: 0.3,
               marginTop: scale(4),
-              borderColor: isChoosing ? '#744ACC' : 'grey',
+              borderColor: text === "Error" ? 'red' : '#744ACC',
             }}
           />
         </View>

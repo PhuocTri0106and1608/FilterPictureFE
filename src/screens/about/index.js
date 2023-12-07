@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
         marginLeft: scale(40),
         fontWeight:'600',
         fontSize: scale(28),
+        fontFamily: FONT_FAMILY.Tenor,
         lineHeight:scale(32),
         color: '#744ACC',
     },
@@ -69,6 +70,7 @@ const styles = StyleSheet.create({
         marginVertical:scale(20),
         alignSelf: 'center',
         textAlign: 'justify',
+        fontFamily: FONT_FAMILY.Tenor,
         fontSize: 20,
         fontWeight: '500',
         color: '#744ACC',
@@ -81,6 +83,7 @@ const styles = StyleSheet.create({
     bodyText: {
         textAlign: 'justify',
         fontSize: 16,
+        fontFamily: FONT_FAMILY.Tenor,
         fontWeight: '400',
         color: '#744ACC',
     },

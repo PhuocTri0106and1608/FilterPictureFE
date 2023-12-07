@@ -1,13 +1,17 @@
-import { SafeAreaView, StyleSheet, Text, View,Image,ScrollView,TouchableOpacity,Platform ,
-   ActivityIndicator} from 'react-native'
-import React, { useState,useEffect } from 'react'
+import { SafeAreaView, StyleSheet, Text, View,Image,
+  ScrollView,TouchableOpacity,PermissionsAndroid, Platform} from 'react-native'
+import React, { useState,useEffect, useRef } from 'react'
 import scale from '../../constants/responsive'
 import { IC_Back,IC_Delete } from '../../assets/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../../constants/loader';
 import axios from 'axios'
-import Message from '../../constants/errorMessage';
+import Message from '../../constants/message';
 import { saveCezanne, saveMonet, saveUkiyoe, saveVangogh } from '../../../redux/actions/resultActions';
+import Share from 'react-native-share';
+import ViewShot, { captureRef} from 'react-native-view-shot';
+import RNFetchBlob from 'rn-fetch-blob';
+import FONT_FAMILY from '../../constants/fonts';
 
 
 const ResultScreen = (props) => {
@@ -18,11 +22,85 @@ const ResultScreen = (props) => {
   const [chosen, setChosen] = useState('');
   const [styleTittle, setStyleTittle] = useState();
   const [visible, setVisible] = useState(false);
+  const [title, setTitle] = useState('Error');
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [zoom, setZoom] = useState(false);
   const dispatch = useDispatch();
+  const viewRef = useRef();
   
+  const shareImage = async () => {
+    try {
+      
+      // capture component 
+      const uri = await captureRef(viewRef, {
+        format: 'png',
+        quality: 0.8,
+      });
+
+      // share
+      const shareResponse = await Share.open({url: uri});
+    } catch (error) {
+      console.log('error', error);
+    }
+  };
+  const checkPermission = async () => {
+    
+    // Function to check the platform
+    // If iOS then start downloading
+    // If Android then ask for permission
+
+    if (Platform.OS === 'ios') {
+      downloadImage();
+    } else {
+      try {
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+          {
+            title: 'Storage Permission Required',
+            message:
+              'App needs access to your storage to download Photos',
+          }
+        );
+        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+          // Once user grant the permission start downloading
+          console.log('Storage Permission Granted.');
+          downloadImage();
+        } else {
+          // If permission denied then show alert
+          alert('Storage Permission Not Granted');
+        }
+      } catch (err) {
+        // To handle permission related exception
+        console.warn(err);
+      }
+    }
+  };
+
+
+  const downloadImage = () => {
+    try {
+      let date = new Date();
+      var Base64Code = chosen.split("data:image/png;base64,"); //base64Image is my image base64 string
+      const dirs = RNFetchBlob.fs.dirs;
+      var path = dirs.DCIMDir + `/image_${Math.floor(date.getTime() + date.getSeconds() / 2)}.png`;
+
+      RNFetchBlob.fs.writeFile(path, Base64Code[1], 'base64')
+      .then((res) => {
+        console.log("File : ", res),
+        setTitle("Successfully");
+        setVisible(true);
+        setMessage('Save successfully!');
+      });
+    } catch (error) {
+      console.error('An error occurred during image download:', error);
+      setTitle("Error");
+      setVisible(true);
+      setMessage('Failed to download the image.');
+    }
+  };
+  
+
   
   const Transfer = async (style) => {
     setStyleTittle(style);
@@ -63,8 +141,9 @@ const ResultScreen = (props) => {
       
     } catch (err) {
       setLoading(false);
+      setTitle("Error");
       setVisible(true);
-      setMessage('Request Failed');
+      setMessage('Request error');
       console.log('err', err);
     } finally {
       setLoading(false);
@@ -95,11 +174,12 @@ const ResultScreen = (props) => {
         <Message
           visible={visible}
           clickCancel={() => { setVisible(false) }}
-          title={'ERROR'}
+          title={title}
           message={message}
         />
         {loading && <Loader />}
-          <View style={{marginLeft:scale(20), marginTop:scale(40), flexDirection:'row'}}>
+          <View style={{marginLeft:scale(20), marginTop:scale(40), 
+            flexDirection:'row'}}>
             <TouchableOpacity onPress={() => props.navigation.goBack()}>
               <IC_Back  fill={'#744ACC'}/>
             </TouchableOpacity>
@@ -107,7 +187,7 @@ const ResultScreen = (props) => {
           </View>
           <ScrollView>        
             <View style={{flexDirection:'column',marginTop:scale(12)}}>
-                <Text style={{fontWeight:'600',fontSize:scale(20),lineHeight:scale(20),color:'#744ACC',marginLeft:scale(20)}}>
+                <Text style={{fontWeight:'600',fontFamily: FONT_FAMILY.Tenor,fontSize:scale(20),lineHeight:scale(20),color:'#744ACC',marginLeft:scale(20)}}>
                   Your image:
                 </Text>
                 <View style={{borderWidth:5, borderColor:'#744ACC', justifyContent:'center',borderRadius:50,
@@ -115,17 +195,59 @@ const ResultScreen = (props) => {
                   <Image source={{ uri: photo }} style={styles.photo} resizeMode='cover' />
                 </View>
                 {chosen === "" ? (
-                  <Text style={{fontWeight:'800',fontSize:scale(28),lineHeight:scale(24),color:'#744ACC',textAlign:'center',marginTop:scale(140)}}>
+                  <Text style={{fontWeight:'800',fontFamily: FONT_FAMILY.Tenor,fontSize:scale(28),lineHeight:scale(24),color:'#744ACC',textAlign:'center',marginTop:scale(140)}}>
                     Let's choose style!
                   </Text>
                 ):(<>
-                  <Text style={{fontWeight:'600',fontSize:scale(20),lineHeight:scale(20),color:'#744ACC',marginLeft:scale(20),marginTop:scale(20)}}>
+                  <Text style={{fontWeight:'600',fontFamily: FONT_FAMILY.Tenor,fontSize:scale(20),lineHeight:scale(20),color:'#744ACC',marginLeft:scale(20),marginTop:scale(20)}}>
                     {styleTittle} image:
                   </Text>
-                  <TouchableOpacity onPress={() => setZoom(true)} 
+                  <TouchableOpacity onPress={() => setZoom(true)}
                   style={{borderWidth:5, borderColor:'#744ACC', justifyContent:'center',borderRadius:50,
                 alignSelf:'center',width:scale(300),height:scale(300),marginTop:scale(20)}}>
-                    <Image source={{ uri: chosen}} style={styles.photo} resizeMode='cover'/>
+                    <ViewShot ref={viewRef}>
+                      <Image source={{ uri: chosen}} style={styles.photo} resizeMode='cover'/>
+                    </ViewShot>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={{
+                    marginTop:scale(20),
+                    width: scale(300),
+                    height:scale(50),
+                    alignItems:'center',
+                    alignSelf:'center',
+                    justifyContent:'center',
+                    backgroundColor:'#744ACC',
+                    borderRadius:scale(20),
+                  }} onPress={checkPermission}>
+                    <Text style={{
+                    justifyContent:'center',
+                    fontWeight:'500',
+                    fontFamily: FONT_FAMILY.Tenor,
+                    fontSize: scale(20),
+                    lineHeight:scale(20),
+                    color:"#F0F6FB"}}>
+                      Save
+                    </Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={{
+                    marginTop:scale(20),
+                    width: scale(300),
+                    height:scale(50),
+                    alignItems:'center',
+                    alignSelf:'center',
+                    justifyContent:'center',
+                    backgroundColor:'#744ACC',
+                    borderRadius:scale(20),
+                  }} onPress={shareImage}>
+                    <Text style={{
+                    justifyContent:'center',
+                    fontWeight:'500',
+                    fontFamily: FONT_FAMILY.Tenor,
+                    fontSize: scale(20),
+                    lineHeight:scale(20),
+                    color:"#F0F6FB"}}>
+                      Share
+                    </Text>
                   </TouchableOpacity>
                 </>)}
             </View>
@@ -151,7 +273,6 @@ const ResultScreen = (props) => {
                 onPress={() => {
                   results.Monet_result?.result === undefined ? Transfer('Monet') : null,
                   setChosen(results.Monet_result?.result),
-                  console.log('asfsdf', JSON.stringify(chosen)),
                   setStyleTittle('Monet')
                 }}>
                 <Text
@@ -203,6 +324,7 @@ const styles = StyleSheet.create({
   title: {
     marginLeft:scale(20),
     fontWeight:'700',
+    fontFamily: FONT_FAMILY.Tenor,
     fontSize: scale(32),
     lineHeight:scale(32),
     color: '#744ACC',
@@ -241,10 +363,12 @@ const styles = StyleSheet.create({
   },
   textTab: {
     color: '#744ACC',
+    fontFamily: FONT_FAMILY.Tenor,
     fontSize: scale(17),
   },
   textTabChosen: {
     color: 'white',
+    fontFamily: FONT_FAMILY.Tenor,
     fontSize: scale(17),
   },
   imgContainer: {

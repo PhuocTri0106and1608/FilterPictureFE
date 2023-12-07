@@ -5,6 +5,7 @@ import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import { IC_Back, IC_Camera, IC_Gallery } from '../../assets/icons';
 import {resetResult } from '../../../redux/actions/resultActions';
 import {useSelector,useDispatch } from 'react-redux';
+import FONT_FAMILY from '../../constants/fonts';
 
 const HomeScreen = (props) => {
     const [photo, setPhoto] = useState(null);
@@ -55,7 +56,9 @@ const HomeScreen = (props) => {
                     <IC_Camera style={styles.icon}/>
                 </TouchableOpacity>
                 <View style={{flexDirection:'column',marginTop:scale(12)}}>
-                    <Text style={{fontWeight:'400',fontSize:scale(20),lineHeight:scale(20),color:'#744ACC'}}>Review your image:</Text>
+                    <Text style={{fontFamily: FONT_FAMILY.Tenor,fontSize:scale(20),lineHeight:scale(20),color:'#744ACC'}}>
+                      Review your image:
+                    </Text>
                     <View style={{borderWidth:5, borderColor:'#744ACC', justifyContent:'center',borderRadius:50,
                     alignSelf:'center',width:scale(300),height:scale(300),marginTop:scale(20)}}>
                       <Image source={{ uri: photo }} style={styles.photo} resizeMode='cover'/>
@@ -94,6 +97,7 @@ const styles = StyleSheet.create({
     title: {
       marginLeft:scale(20),
       fontWeight:'700',
+      fontFamily: FONT_FAMILY.Tenor,
       fontSize: scale(32),
       lineHeight:scale(32),
       color: '#744ACC',
@@ -123,7 +127,8 @@ const styles = StyleSheet.create({
       borderRadius:scale(20),
     },
     buttonText: {
-        marginTop:scale(7),
+        justifyContent:'center',
+        fontFamily: FONT_FAMILY.Tenor,
         fontWeight:'500',
         fontSize: scale(20),
         lineHeight:scale(20),
