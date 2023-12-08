@@ -4,7 +4,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import HomeScreen from '../screens/homeScreen'
 import ResultScreen from '../screens/resultScreen';
 import OnboardingScreen from '../screens/onboarding';
-import AboutScreen from '../screens/about'
+import AboutScreen from '../screens/about';
+import SettingScreen from '../screens/settings';
 
 const Stack = createNativeStackNavigator();
 
@@ -33,7 +34,11 @@ export const RootStackScreen = props => {
         component={ResultScreen}
         options={{headerShown: false}}
       />
-      
+      <Stack.Screen
+        name="SettingScreen"
+        component={SettingScreen}
+        options={{headerShown: false}}
+      />
     </Stack.Navigator>
   );
 };

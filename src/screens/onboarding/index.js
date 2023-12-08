@@ -1,115 +1,129 @@
-import { StyleSheet, Text, View, SafeAreaView, Dimensions, TouchableOpacity, Image, ScrollView } from 'react-native'
-import React from 'react'
+import {
+    SafeAreaView,
+    StyleSheet,
+    Text,
+    View,
+    TouchableOpacity,
+    Dimensions,
+    Image,
+    ImageBackground,
+  } from 'react-native';
+  import React from 'react';
+  import {IMG_Real, IMG_Vangogh, IMG_Monet} from '../../assets/images';
 import scale from '../../constants/responsive';
-import FONT_FAMILY from '../../constants/fonts';
-import { IMG_Real, IMG_Monet, IMG_Vangogh } from '../../assets/images';
-import { SwiperFlatList } from 'react-native-swiper-flatlist';
-
-const {width: screenWidth} = Dimensions.get('window');  
-
-const OnboardingScreen = (props) => {
+  import SwiperFlatList from 'react-native-swiper-flatlist';
+  import FONT_FAMILY from '../../constants/fonts';
+  
+  const {width: screenWidth} = Dimensions.get('window');
+  
+  const HotNew = (props) => {
     const views = [
-        {source: IMG_Real, text: "Change your image \n  into an art picture", id:0 },
-        {source: IMG_Vangogh, text: "Choose the style of \n the artist you want", id:1 },
-        {source: IMG_Monet, text: "Download it and get \n    a unique picture", id:2 },
+      {
+        source: IMG_Real,
+        text: 'Make your photos \ndifferent.',
+        id: 0,
+      },
+      {
+        source: IMG_Monet,
+        text: 'Choose your photo  \nand the artist style',
+        id: 1,
+      },
+      {
+        source: IMG_Vangogh,
+        text: 'Download it to get a  \nunique painting',
+        id: 2,
+      },
     ];
-  return (
-    <SafeAreaView style={styles.container}>
-        <ScrollView>
-            <TouchableOpacity style={styles.subButton} onPress={() => props.navigation.navigate('AboutScreen')}>
-                <Text style={styles.buttonText}>About</Text>
-            </TouchableOpacity>
-            <View style={styles.swiper}>
-                <SwiperFlatList
-                    showPagination
-                    paginationStyle={styles.wrapDot}
-                    paginationStyleItemActive={styles.dotActive}
-                    paginationStyleItemInactive={styles.dot}
-                    data={views}
-                    
-                    renderItem={({ item }) => (
-                        <View key={item.id} style={{width: screenWidth, height: '50%'}}>
-                            <Image source={item.source} style={styles.image}/>
-                            <Text style={styles.text}>{item.text}</Text>
-                        </View>
-                    )}
-                />      
-            </View>
-            <TouchableOpacity style={styles.skip} onPress={() => props.navigation.navigate('HomeScreen')}>
-                <Text style={styles.skipText}>Skip</Text>
-            </TouchableOpacity>
-        </ScrollView>
-    </SafeAreaView>
-  )
-}
-
-export default OnboardingScreen
-
-const styles = StyleSheet.create({
+    return (
+      <SafeAreaView style={styles.container}>
+        <View style={styles.swiper}>
+          <SwiperFlatList
+            showPagination
+            paginationStyle={styles.wrapDot}
+            paginationStyleItemActive={styles.dotActive}
+            paginationStyleItemInactive={styles.dot}
+            data={views}
+            renderItem={({item}) => (
+              <View key={item.id} style={{width: screenWidth, height: '110%'}}>
+                <ImageBackground source={item.source} style={styles.image}>
+                  <Text style={styles.text}>{item.text}</Text>
+                  <Text style={styles.subText}>{item.subText}</Text>
+                  <TouchableOpacity
+                    style={styles.skip} onPress={() => props.navigation.navigate('HomeScreen')}>
+                    <Text style={styles.skipText}>Skip</Text>
+                  </TouchableOpacity>
+                </ImageBackground>
+              </View>
+            )}
+          />
+        </View>
+      </SafeAreaView>
+    );
+  };
+  
+  export default HotNew;
+  
+  const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: "#EDD1FF",
-    },
-    subButton: {
-        marginTop:scale(20),
-        marginLeft:scale(270),
-        height:scale(50),
-        width:scale(80),
-        justifyContent:'center',
-        backgroundColor:'#2DB3EB',
-        borderRadius:scale(20),
-    },
-    buttonText: {
-        alignSelf:'center',
-        fontFamily: FONT_FAMILY.Tenor,
-        fontSize: scale(18),
-        lineHeight:scale(18),
+      flex: 1,
+      backgroundColor: "#EDD1FF",
     },
     swiper: {
-        height: scale(600),
+      height: '100%',
+      width: '100%',
+      //justifyContent: 'center',
     },
     image: {
-        marginTop: scale(100),
-        justifyContent: 'center',
+        marginTop: scale(120),
+        marginLeft: scale(28),
+        //borderColor: "#00000",
         alignSelf: 'center',
-        borderRadius: scale(20),
-        zIndex: 1,
+        alignContent: 'center',
+        width: "91.5%",
+        height: "68%",
     },
     text: {
-        marginTop: scale(33),
-        fontSize: scale(36),
-        alignSelf: 'center',
-        justifyContent: 'center',
-        fontFamily: FONT_FAMILY.Tenor,
-        zIndex: 2,
+      height: scale(100),
+      marginTop: scale(500),
+      fontSize: scale(28),
+      fontWeight: '700',
+      marginLeft: scale(10),
+      color: '#000000',
+      justifyContent: 'center',
+      fontFamily: FONT_FAMILY.Tenor,
+      fontWeight: "600",
     },
+    
     wrapDot: {
-        flexDirection: 'row',
-        alignSelf: 'center',  
+      width: '20%',
+      top: '66%',
+      left: '40%',
     },
     dotActive: {
-        margin: 1,
-        width: 7,
-        height: 7,
+      margin: scale(1),
+      backgroundColor: '#2DB3EB',
+      width: scale(14),
+      height: scale(3),
+      borderRadius: 10,
     },
     dot: {
-        margin: 1,
-        opacity: 0.27,
-        size: 3,
-        width: 7,
-        height: 7,
+      margin: scale(1),
+      //backgroundColor: '#000000',
+      size: 4,
+      width: scale(3),
+      height: scale(3),
     },
     skip: {
-        width: scale(300),
-        height: scale(60),
-        borderRadius: scale(30),
-        backgroundColor: "#2DB3EB",
-        alignSelf: 'center',
-        justifyContent: 'center',
+      backgroundColor: '#2DB3EB',
     },
     skipText: {
-        fontSize: scale(23),
-        fontFamily: FONT_FAMILY.Tenor,
-        alignSelf: 'center',
+      fontWeight: '400',
+      position: 'absolute',
+      bottom: scale(20),
+      right: scale(20),
+      fontSize: scale(14),
+      // alignSelf: 'center',
+      color: '#000000',
+      fontFamily: FONT_FAMILY.Tenor,
     },
-})
+  });

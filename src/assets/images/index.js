@@ -4,3 +4,4 @@ export {default as IMG_Cezanne} from './cezanne.jpg';
 export {default as IMG_Vangogh} from './vangogh.jpg';
 export {default as IMG_Ukiyoe} from './ukiyoe.jpg';
 export {default as IMG_Logo} from './logo.png';
+export {default as IMG_HLogo} from './HeaderLogo.jpg';

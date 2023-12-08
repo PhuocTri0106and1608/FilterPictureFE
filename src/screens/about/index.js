@@ -8,11 +8,11 @@ import { IMG_Logo } from '../../assets/images'
 const AboutScreen = (props) => {
   return (
     <SafeAreaView style={styles.container}>
-        <View style={styles.titleBox}>
-            <TouchableOpacity onPress={() => props.navigation.goBack()}>
-                <IC_Back  fill={'#744ACC'}/>
-            </TouchableOpacity>
-            <Text style={styles.title}>About Photo Transfer</Text>
+        <View style={{marginLeft:scale(20), marginTop:scale(40), flexDirection:'row'}}>
+          <TouchableOpacity onPress={() => props.navigation.goBack()}>
+            <IC_Back/>
+          </TouchableOpacity>
+          <Text style={styles.title}>About</Text>
         </View>
         
         
@@ -47,19 +47,14 @@ const styles = StyleSheet.create({
         flex:1,
         backgroundColor:'#F0F6FB',
     },
-    titleBox: {
-        marginLeft:scale(20), 
-        marginTop:scale(40),
-    },
     title: {
-        marginTop: scale(-21),
-        marginLeft: scale(40),
-        fontWeight:'600',
-        fontSize: scale(28),
+        marginLeft:scale(20),
+        fontWeight:'400',
         fontFamily: FONT_FAMILY.Tenor,
+        fontSize: scale(32),
         lineHeight:scale(32),
         color: '#744ACC',
-    },
+      },
     logo: {
         borderRadius: scale(360),
         width: scale(150),

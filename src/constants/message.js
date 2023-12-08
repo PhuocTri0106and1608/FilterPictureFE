@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   noticeBox: {
+    borderRadius: scale(20),
     width: scale(315),
     height: scale(322),
     backgroundColor: 'white',
@@ -108,6 +109,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   buttonBox: {
+    borderRadius: scale(20),
     backgroundColor: '#744ACC',
     height: scale(53),
     width: scale(278),

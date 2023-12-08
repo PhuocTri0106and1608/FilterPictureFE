@@ -2,10 +2,11 @@ import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View, Image, ScrollVi
 import React,{useEffect, useState} from 'react'
 import scale from '../../constants/responsive'
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
-import { IC_Back, IC_Camera, IC_Gallery } from '../../assets/icons';
+import { IC_Back, IC_Camera, IC_Gallery, IC_Setting } from '../../assets/icons';
 import {resetResult } from '../../../redux/actions/resultActions';
 import {useSelector,useDispatch } from 'react-redux';
 import FONT_FAMILY from '../../constants/fonts';
+import { IMG_HLogo } from '../../assets/images';
 
 const HomeScreen = (props) => {
     const [photo, setPhoto] = useState(null);
@@ -42,9 +43,9 @@ const HomeScreen = (props) => {
     <SafeAreaView style={styles.container}>
         <View style={{marginLeft:scale(20), marginTop:scale(40), flexDirection:'row'}}>
           <TouchableOpacity onPress={() => props.navigation.goBack()}>
-            <IC_Back  fill={'#744ACC'}/>
+            <IC_Back  stroke={'#744ACC'}/>
           </TouchableOpacity>
-          <Text style={styles.title}>Photo Transfer</Text>
+          <Image style={styles.title} source={IMG_HLogo}/>
         </View>
         <ScrollView style={{marginHorizontal:scale(30),marginTop: scale(20)}}>
                 <TouchableOpacity style={styles.takePhotoButton} onPress={pickPhoto}>
@@ -55,12 +56,16 @@ const HomeScreen = (props) => {
                     <Text style={styles.buttonText}>Camera</Text>
                     <IC_Camera style={styles.icon}/>
                 </TouchableOpacity>
-                <View style={{flexDirection:'column',marginTop:scale(12)}}>
+                <TouchableOpacity style={styles.takePhotoButton} onPress={() => props.navigation.navigate('SettingScreen')}>
+                    <Text style={styles.buttonText}>Settings</Text>
+                    <IC_Setting style={styles.icon}/>
+                </TouchableOpacity>
+                <View style={{flexDirection:'column',marginTop:scale(20)}}>
                     <Text style={{fontFamily: FONT_FAMILY.Tenor,fontSize:scale(20),lineHeight:scale(20),color:'#744ACC'}}>
                       Review your image:
                     </Text>
-                    <View style={{borderWidth:5, borderColor:'#744ACC', justifyContent:'center',borderRadius:50,
-                    alignSelf:'center',width:scale(300),height:scale(300),marginTop:scale(20)}}>
+                    <View style={{borderWidth:2, borderColor:'#744ACC', justifyContent:'center',borderRadius:30,
+                    alignSelf:'center',width:scale(310),height:scale(300),marginTop:scale(15)}}>
                       <Image source={{ uri: photo }} style={styles.photo} resizeMode='cover'/>
                     </View>
                     <>
@@ -90,20 +95,20 @@ const styles = StyleSheet.create({
       photo: {
         width: '100%',
         height: '100%',
-        borderRadius:44,
+        borderRadius:28,
         justifyContent:'center',
         alignSelf:'center',
       },
     title: {
-      marginLeft:scale(20),
-      fontWeight:'700',
-      fontFamily: FONT_FAMILY.Tenor,
-      fontSize: scale(32),
-      lineHeight:scale(32),
-      color: '#744ACC',
+      //alignItems: 'center',
+      justifyContent: 'center',
+      marginTop: scale(-10),
+      marginLeft:scale(10),
+      width: "70%",
+      height: "215%",
     },
     takePhotoButton: {
-        marginTop:scale(20),
+        marginTop:scale(15),
         height:scale(70),
         paddingLeft:scale(30),
         justifyContent:'center',
@@ -127,15 +132,15 @@ const styles = StyleSheet.create({
       borderRadius:scale(20),
     },
     buttonText: {
-        justifyContent:'center',
+      justifyContent: 'center',
         fontFamily: FONT_FAMILY.Tenor,
         fontWeight:'500',
         fontSize: scale(20),
-        lineHeight:scale(20),
+        //lineHeight:scale(20),
         color: '#F0F6FB',
     },
     icon: {
-        marginLeft: scale(250), 
+        marginLeft: scale(230), 
         marginTop: scale(-22)
     },
 })
