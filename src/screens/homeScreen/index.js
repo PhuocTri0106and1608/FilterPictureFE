@@ -7,6 +7,7 @@ import {resetResult } from '../../../redux/actions/resultActions';
 import {useSelector,useDispatch } from 'react-redux';
 import FONT_FAMILY from '../../constants/fonts';
 import { IMG_HLogo } from '../../assets/images';
+import Message from '../../constants/message';
 
 const HomeScreen = (props) => {
     const [photo, setPhoto] = useState(null);
@@ -37,7 +38,20 @@ const HomeScreen = (props) => {
     };
     useEffect(() => {
     }, [photo]);
-    
+    const [title, setTitle] = useState('Error');
+    const [visible, setVisible] = useState(false);
+    const [message, setMessage] = useState('');
+    const handleButtonPress = () => {
+      if(photo === null){
+
+        setTitle("Alert!")
+        setVisible(true);
+        setMessage('Please upload a photo!');   
+      }
+      else {
+        props.navigation.navigate('ResultScreen', { photo: photo });
+      }
+    }
     //style={{marginLeft: scale(80), marginTop:scale(5), flexDirection:'row'}}
   return (
     <SafeAreaView style={styles.container}>
@@ -69,11 +83,16 @@ const HomeScreen = (props) => {
                       <Image source={{ uri: photo }} style={styles.photo} resizeMode='cover'/>
                     </View>
                     <>
-                      <TouchableOpacity style={photo === null ? 
-                      styles.viewResultButtonDisable : styles.viewResultButton} 
-                      onPress={() => {photo === null ? null : props.navigation.navigate('ResultScreen', {photo:photo})}}>
+                      <TouchableOpacity style={styles.viewResultButton} 
+                      onPress={handleButtonPress}>
                           <Text style={styles.buttonText}>Transfer Image</Text>
                       </TouchableOpacity>
+                      <Message
+                        visible={visible}
+                        clickCancel={() => { setVisible(false) }}
+                        title={title}
+                        message={message}
+                      />
                     </>
                 </View>
         </ScrollView>
