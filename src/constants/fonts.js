@@ -11,6 +11,7 @@ const FONT_FAMILY = {
   Tenor: 'TenorSans-Regular',
   Title: 'UTM-AptimaBold',
   Body: 'UTM-Aptima',
+  TT:'UTM AptimaBold',
 };
 
 export default FONT_FAMILY;
