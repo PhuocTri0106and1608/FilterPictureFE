@@ -86,7 +86,11 @@ import scale from '../../constants/responsive';
       height: scale(100),
       marginTop: scale(500),
       fontSize: scale(28),
+<<<<<<< HEAD
       //fontWeight: '700',
+=======
+      fontWeight: '500',
+>>>>>>> 3d4f9cff0423bc4e92583d495334ed76f0b42ae3
       marginLeft: scale(10),
       color: '#000000',
       justifyContent: 'center',
