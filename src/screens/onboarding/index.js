@@ -86,7 +86,7 @@ import scale from '../../constants/responsive';
       height: scale(100),
       marginTop: scale(500),
       fontSize: scale(28),
-      fontWeight: '700',
+      //fontWeight: '700',
       marginLeft: scale(10),
       color: '#000000',
       justifyContent: 'center',
@@ -117,7 +117,7 @@ import scale from '../../constants/responsive';
       backgroundColor: '#2DB3EB',
     },
     skipText: {
-      fontWeight: '400',
+      //fontWeight: '400',
       position: 'absolute',
       bottom: scale(20),
       right: scale(20),
