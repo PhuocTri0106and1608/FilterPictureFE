@@ -12,7 +12,7 @@ import Share from 'react-native-share';
 import ViewShot, { captureRef} from 'react-native-view-shot';
 import RNFetchBlob from 'rn-fetch-blob';
 import FONT_FAMILY from '../../constants/fonts';
-
+import { IMG_HLogo } from '../../assets/images';
 
 const ResultScreen = (props) => {
   const {photo} = props.route.params;
@@ -178,32 +178,31 @@ const ResultScreen = (props) => {
           message={message}
         />
         {loading && <Loader />}
-          <View style={{marginLeft:scale(20), marginTop:scale(40), 
-            flexDirection:'row'}}>
+          <View style={{marginLeft:scale(20), marginTop:scale(30), flexDirection:'row'}}>
             <TouchableOpacity onPress={() => props.navigation.goBack()}>
-              <IC_Back  fill={'#744ACC'}/>
+              <IC_Back stroke={'#744ACC'}/>
             </TouchableOpacity>
-            <Text style={styles.title}>Photo Transfer</Text>
+            <Image style={styles.title} source={IMG_HLogo}/>
           </View>
           <ScrollView>        
-            <View style={{flexDirection:'column',marginTop:scale(12)}}>
-                <Text style={{fontWeight:'600',fontFamily: FONT_FAMILY.Tenor,fontSize:scale(20),lineHeight:scale(20),color:'#744ACC',marginLeft:scale(20)}}>
+            <View style={{flexDirection:'column',marginTop:scale(20)}}>
+                <Text style={{fontFamily: FONT_FAMILY.Body,fontSize:scale(20),lineHeight:scale(20),color:'#744ACC',marginLeft:scale(20)}}>
                   Your image:
                 </Text>
-                <View style={{borderWidth:5, borderColor:'#744ACC', justifyContent:'center',borderRadius:50,
+                <View style={{borderWidth:2, borderColor:'#744ACC', justifyContent:'center',borderRadius:30,
                 alignSelf:'center',width:scale(300),height:scale(300),marginTop:scale(20)}}>
                   <Image source={{ uri: photo }} style={styles.photo} resizeMode='cover' />
                 </View>
                 {chosen === "" ? (
-                  <Text style={{fontWeight:'800',fontFamily: FONT_FAMILY.Tenor,fontSize:scale(28),lineHeight:scale(24),color:'#744ACC',textAlign:'center',marginTop:scale(140)}}>
+                  <Text style={{fontFamily: FONT_FAMILY.Body,fontSize:scale(28),lineHeight:scale(24),color:'#744ACC',textAlign:'center',marginTop:scale(140)}}>
                     Let's choose style!
                   </Text>
                 ):(<>
-                  <Text style={{fontWeight:'600',fontFamily: FONT_FAMILY.Tenor,fontSize:scale(20),lineHeight:scale(20),color:'#744ACC',marginLeft:scale(20),marginTop:scale(20)}}>
+                  <Text style={{fontFamily: FONT_FAMILY.Body,fontSize:scale(20),lineHeight:scale(20),color:'#744ACC',marginLeft:scale(20),marginTop:scale(20)}}>
                     {styleTittle} image:
                   </Text>
                   <TouchableOpacity onPress={() => setZoom(true)}
-                  style={{borderWidth:5, borderColor:'#744ACC', justifyContent:'center',borderRadius:50,
+                  style={{borderWidth:2, borderColor:'#744ACC', justifyContent:'center',borderRadius:30,
                 alignSelf:'center',width:scale(300),height:scale(300),marginTop:scale(20)}}>
                     <ViewShot ref={viewRef}>
                       <Image source={{ uri: chosen}} style={styles.photo} resizeMode='cover'/>
@@ -222,7 +221,7 @@ const ResultScreen = (props) => {
                     <Text style={{
                     justifyContent:'center',
                     fontWeight:'500',
-                    fontFamily: FONT_FAMILY.Tenor,
+                    fontFamily: FONT_FAMILY.Body,
                     fontSize: scale(20),
                     lineHeight:scale(20),
                     color:"#F0F6FB"}}>
@@ -242,7 +241,7 @@ const ResultScreen = (props) => {
                     <Text style={{
                     justifyContent:'center',
                     fontWeight:'500',
-                    fontFamily: FONT_FAMILY.Tenor,
+                    fontFamily: FONT_FAMILY.Body,
                     fontSize: scale(20),
                     lineHeight:scale(20),
                     color:"#F0F6FB"}}>
@@ -322,17 +321,17 @@ const styles = StyleSheet.create({
     backgroundColor:'#F0F6FB',
   },
   title: {
-    marginLeft:scale(20),
-    fontWeight:'700',
-    fontFamily: FONT_FAMILY.Tenor,
-    fontSize: scale(32),
-    lineHeight:scale(32),
-    color: '#744ACC',
+    //alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: scale(-20),
+    marginLeft:scale(40),
+    width: "90%",
+    height: "280%",
   },
   photo: {
     width: '100%',
     height: '100%',
-    borderRadius:44,
+    borderRadius:28,
     justifyContent:'center',
     alignSelf:'center',
   },
@@ -363,12 +362,12 @@ const styles = StyleSheet.create({
   },
   textTab: {
     color: '#744ACC',
-    fontFamily: FONT_FAMILY.Tenor,
+    fontFamily: FONT_FAMILY.Body,
     fontSize: scale(17),
   },
   textTabChosen: {
     color: 'white',
-    fontFamily: FONT_FAMILY.Tenor,
+    fontFamily: FONT_FAMILY.Body,
     fontSize: scale(17),
   },
   imgContainer: {

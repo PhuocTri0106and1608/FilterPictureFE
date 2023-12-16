@@ -60,8 +60,8 @@ const styles = StyleSheet.create({
     },
     title: {
         marginLeft:scale(20),
-        fontWeight:'400',
-        fontFamily: FONT_FAMILY.Tenor,
+        // fontWeight:'400',
+        fontFamily: FONT_FAMILY.Title,
         fontSize: scale(32),
         lineHeight:scale(32),
         color: '#744ACC',
@@ -89,9 +89,9 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         justifyContent: 'center',
-          fontFamily: FONT_FAMILY.Tenor,
-          fontSize: scale(20),
-          color: '#000000',
+        fontFamily: FONT_FAMILY.Body,
+        fontSize: scale(20),
+        color: '#000000',
       },
       icon: {
         marginLeft: scale(230), 

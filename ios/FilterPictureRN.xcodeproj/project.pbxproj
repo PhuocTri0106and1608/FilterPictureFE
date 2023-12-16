@@ -24,6 +24,9 @@
 		830D38F2A24249AF8450BE89 /* Lexend-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D1B78E2DB80F4063BF214455 /* Lexend-SemiBold.ttf */; };
 		023350755F0B435D82EB0930 /* Lexend-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E698B2899DE425BAE882BFA /* Lexend-Thin.ttf */; };
 		20ABAB9B460C48D0AEFA19E7 /* TenorSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 931D88BB55644BC9B8CB8451 /* TenorSans-Regular.ttf */; };
+		851FA4A327094F93A9D0EE41 /* UTM AptimaBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00074F990FE641F0BA240DF6 /* UTM AptimaBold.ttf */; };
+		BA6A7055DD5443E9ADE06B7B /* UTM-Aptima.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 001A1CD1512646EF857F3DB1 /* UTM-Aptima.ttf */; };
+		59FB19CB52E64D3E8A812AEF /* UTM-AptimaBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 046910B6B1EB4145A684D6D1 /* UTM-AptimaBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +67,9 @@
 		D1B78E2DB80F4063BF214455 /* Lexend-SemiBold.ttf */ = {isa = PBXFileReference; name = "Lexend-SemiBold.ttf"; path = "../src/assets/fonts/Lexend-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		8E698B2899DE425BAE882BFA /* Lexend-Thin.ttf */ = {isa = PBXFileReference; name = "Lexend-Thin.ttf"; path = "../src/assets/fonts/Lexend-Thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		931D88BB55644BC9B8CB8451 /* TenorSans-Regular.ttf */ = {isa = PBXFileReference; name = "TenorSans-Regular.ttf"; path = "../src/assets/fonts/TenorSans-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		00074F990FE641F0BA240DF6 /* UTM AptimaBold.ttf */ = {isa = PBXFileReference; name = "UTM AptimaBold.ttf"; path = "../src/assets/fonts/UTM AptimaBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		001A1CD1512646EF857F3DB1 /* UTM-Aptima.ttf */ = {isa = PBXFileReference; name = "UTM-Aptima.ttf"; path = "../src/assets/fonts/UTM-Aptima.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		046910B6B1EB4145A684D6D1 /* UTM-AptimaBold.ttf */ = {isa = PBXFileReference; name = "UTM-AptimaBold.ttf"; path = "../src/assets/fonts/UTM-AptimaBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +188,9 @@
 				D1B78E2DB80F4063BF214455 /* Lexend-SemiBold.ttf */,
 				8E698B2899DE425BAE882BFA /* Lexend-Thin.ttf */,
 				931D88BB55644BC9B8CB8451 /* TenorSans-Regular.ttf */,
+				00074F990FE641F0BA240DF6 /* UTM AptimaBold.ttf */,
+				001A1CD1512646EF857F3DB1 /* UTM-Aptima.ttf */,
+				046910B6B1EB4145A684D6D1 /* UTM-AptimaBold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -293,6 +302,9 @@
 				830D38F2A24249AF8450BE89 /* Lexend-SemiBold.ttf in Resources */,
 				023350755F0B435D82EB0930 /* Lexend-Thin.ttf in Resources */,
 				20ABAB9B460C48D0AEFA19E7 /* TenorSans-Regular.ttf in Resources */,
+				851FA4A327094F93A9D0EE41 /* UTM AptimaBold.ttf in Resources */,
+				BA6A7055DD5443E9ADE06B7B /* UTM-Aptima.ttf in Resources */,
+				59FB19CB52E64D3E8A812AEF /* UTM-AptimaBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

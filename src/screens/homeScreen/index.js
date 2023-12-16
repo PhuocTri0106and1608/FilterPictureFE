@@ -38,16 +38,16 @@ const HomeScreen = (props) => {
     useEffect(() => {
     }, [photo]);
     
-    
+    //style={{marginLeft: scale(80), marginTop:scale(5), flexDirection:'row'}}
   return (
     <SafeAreaView style={styles.container}>
-        <View style={{marginLeft:scale(20), marginTop:scale(40), flexDirection:'row'}}>
-          <TouchableOpacity onPress={() => props.navigation.goBack()}>
+        <View style={styles.title}>
+          {/* <TouchableOpacity onPress={() => props.navigation.goBack()}>
             <IC_Back  stroke={'#744ACC'}/>
-          </TouchableOpacity>
-          <Image style={styles.title} source={IMG_HLogo}/>
+          </TouchableOpacity> */}
+          <Image style={{width: '300%', height: '100%'}} source={IMG_HLogo}/>
         </View>
-        <ScrollView style={{marginHorizontal:scale(30),marginTop: scale(20)}}>
+        <ScrollView style={{marginHorizontal:scale(30)}}>
                 <TouchableOpacity style={styles.takePhotoButton} onPress={pickPhoto}>
                     <Text style={styles.buttonText}>Gallery</Text>
                     <IC_Gallery style={styles.icon}/>
@@ -61,7 +61,7 @@ const HomeScreen = (props) => {
                     <IC_Setting style={styles.icon}/>
                 </TouchableOpacity>
                 <View style={{flexDirection:'column',marginTop:scale(20)}}>
-                    <Text style={{fontFamily: FONT_FAMILY.Tenor,fontSize:scale(20),lineHeight:scale(20),color:'#744ACC'}}>
+                    <Text style={{fontFamily: FONT_FAMILY.Body,fontSize:scale(20),lineHeight:scale(20),color:'#744ACC'}}>
                       Review your image:
                     </Text>
                     <View style={{borderWidth:2, borderColor:'#744ACC', justifyContent:'center',borderRadius:30,
@@ -101,11 +101,14 @@ const styles = StyleSheet.create({
       },
     title: {
       //alignItems: 'center',
-      justifyContent: 'center',
-      marginTop: scale(-10),
-      marginLeft:scale(10),
-      width: "70%",
-      height: "215%",
+      // justifyContent: 'center',
+      marginTop: scale(10),
+      marginLeft:scale(60),
+      // width: "70%",
+      // height: "215%",
+      //alignSelf: 'center',
+      width: '30%',
+      height: '10%',
     },
     takePhotoButton: {
         marginTop:scale(15),
@@ -133,8 +136,8 @@ const styles = StyleSheet.create({
     },
     buttonText: {
       justifyContent: 'center',
-        fontFamily: FONT_FAMILY.Tenor,
-        fontWeight:'500',
+        fontFamily: FONT_FAMILY.Body,
+       // fontWeight:'500',
         fontSize: scale(20),
         //lineHeight:scale(20),
         color: '#F0F6FB',

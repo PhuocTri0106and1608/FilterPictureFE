@@ -49,8 +49,8 @@ const styles = StyleSheet.create({
     },
     title: {
         marginLeft:scale(20),
-        fontWeight:'400',
-        fontFamily: FONT_FAMILY.Tenor,
+        //fontWeight:'400',
+        fontFamily: FONT_FAMILY.Title,
         fontSize: scale(32),
         lineHeight:scale(32),
         color: '#744ACC',
@@ -65,9 +65,9 @@ const styles = StyleSheet.create({
         marginVertical:scale(20),
         alignSelf: 'center',
         textAlign: 'justify',
-        fontFamily: FONT_FAMILY.Tenor,
+        fontFamily: FONT_FAMILY.Body,
         fontSize: 20,
-        fontWeight: '500',
+        //fontWeight: '500',
         color: '#744ACC',
     },
     bodyTextBox: {
@@ -78,8 +78,8 @@ const styles = StyleSheet.create({
     bodyText: {
         textAlign: 'justify',
         fontSize: 16,
-        fontFamily: FONT_FAMILY.Tenor,
-        fontWeight: '400',
+        fontFamily: FONT_FAMILY.Body,
+        //fontWeight: '400',
         color: '#744ACC',
     },
 })

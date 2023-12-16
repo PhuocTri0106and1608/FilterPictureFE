@@ -124,6 +124,6 @@ import scale from '../../constants/responsive';
       fontSize: scale(14),
       // alignSelf: 'center',
       color: '#000000',
-      fontFamily: FONT_FAMILY.Tenor,
+      fontFamily: FONT_FAMILY.Body,
     },
   });
