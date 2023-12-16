@@ -90,8 +90,8 @@ import scale from '../../constants/responsive';
       marginLeft: scale(10),
       color: '#000000',
       justifyContent: 'center',
-      fontFamily: FONT_FAMILY.Tenor,
-      fontWeight: "600",
+      fontFamily: FONT_FAMILY.Body,
+      //fontWeight: "600",
     },
     
     wrapDot: {
@@ -124,6 +124,6 @@ import scale from '../../constants/responsive';
       fontSize: scale(14),
       // alignSelf: 'center',
       color: '#000000',
-      fontFamily: FONT_FAMILY.Tenor,
+      fontFamily: FONT_FAMILY.Body,
     },
   });

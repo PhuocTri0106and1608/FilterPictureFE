@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   },
   titleText: {
     color: '#744ACC',
-    fontFamily: FONT_FAMILY.Tenor,
+    fontFamily: FONT_FAMILY.Title,
     fontSize: scale(24),
     alignSelf: 'center',
   },
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   },
   messageText: {
     color: '#744ACC',
-    fontFamily: FONT_FAMILY.Tenor,
+    fontFamily: FONT_FAMILY.Body,
     fontSize: scale(20),
     textAlign: 'center',
   },
@@ -117,7 +117,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonText: {
-    fontFamily: FONT_FAMILY.Tenor,
+    fontFamily: FONT_FAMILY.Body,
     color: 'white',
+    fontSize: scale(20),
   },
 });
