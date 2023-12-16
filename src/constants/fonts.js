@@ -9,6 +9,8 @@ const FONT_FAMILY = {
   SemiBold: 'Lexend-SemiBold',
   Thin: 'Lexend-Thin',
   Tenor: 'TenorSans-Regular',
+  Title: 'UTM-AptimaBold',
+  Body: 'UTM-Aptima',
 };
 
 export default FONT_FAMILY;
