@@ -1,11 +1,13 @@
-import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View, Image, ScrollView } from 'react-native'
-import React, {useState} from 'react'
-import scale from '../../constants/responsive'
-import { IC_Back} from '../../assets/icons';
+import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View, Image, ScrollView, Dimensions } from 'react-native';
+import React, { useState } from 'react';
+import scale from '../../constants/responsive';
+import { IC_Back } from '../../assets/icons';
 import FONT_FAMILY from '../../constants/fonts';
 import { IMG_HLogo } from '../../assets/images';
 import Message from '../../constants/message';
+import { useEffect } from 'react';
 
+const { width, height } = Dimensions.get('window');
 const SettingScreen = (props) => {
     const [title, setTitle] = useState('Error');
     const [visible, setVisible] = useState(false);
@@ -22,15 +24,15 @@ const SettingScreen = (props) => {
     }
   return (
     <SafeAreaView style={styles.container}>
-        <View style={{marginLeft:scale(20), marginTop:scale(40), flexDirection:'row'}}>
-          <TouchableOpacity onPress={() => props.navigation.goBack()}>
-            <IC_Back/>
-          </TouchableOpacity>
-          <Text style={styles.title}>Settings</Text>
+        <View style={{ marginLeft: scale(20), marginTop: scale(40), flexDirection: 'row' }}>
+            <TouchableOpacity onPress={() => props.navigation.goBack()}>
+                <IC_Back />
+            </TouchableOpacity>
+            <Text style={styles.title}>Settings</Text>
         </View>
         <View style={styles.frame}>
             <TouchableOpacity style={styles.takePhotoButton} onPress={() => props.navigation.navigate('AboutScreen')}>
-                <Text style={styles.buttonText}>About Photo Transfer</Text>     
+                <Text style={styles.buttonText}>About Photo Transfer</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.takePhotoButton} onPress={handleButtonPress}>
@@ -42,10 +44,10 @@ const SettingScreen = (props) => {
             </TouchableOpacity>
         </View>
         <Message
-          visible={visible}
-          clickCancel={() => { setVisible(false) }}
-          title={title}
-          message={message}
+            visible={visible}
+            clickCancel={() => { setVisible(false) }}
+            title={title}
+            message={message}
         />
     </SafeAreaView>
   )
@@ -54,47 +56,42 @@ const SettingScreen = (props) => {
 export default SettingScreen
 
 const styles = StyleSheet.create({
-    container: {
-        flex:1,
-        backgroundColor:'#F0F6FB',
-    },
-    title: {
-        marginLeft:scale(20),
-        // fontWeight:'400',
-        fontFamily: FONT_FAMILY.Title,
-        fontSize: scale(32),
-        lineHeight:scale(32),
-        color: '#744ACC',
-      },
-    frame: {
-        top: scale(20),
-        justifyContent: 'center',
-        backgroundColor: '#FFFFFF',
-        borderRadius: scale(20),
-        marginHorizontal:scale(30),
-        marginTop: scale(20)
-    },
-    takePhotoButton: {
-        height:scale(70),
-        paddingLeft:scale(30),
-        justifyContent:'center',
-        borderRadius:scale(20),
-        borderBottomWidth: 1,
-    },
-    lastButton: {
-        height:scale(70),
-        paddingLeft:scale(30),
-        justifyContent:'center',
-        borderRadius:scale(20),
-    },
-    buttonText: {
-        justifyContent: 'center',
-        fontFamily: FONT_FAMILY.Body,
-        fontSize: scale(20),
-        color: '#000000',
-      },
-      icon: {
-        marginLeft: scale(230), 
-        marginTop: scale(-22)
-    },
+  container: {
+    flex: 1,
+    backgroundColor: '#F0F6FB',
+  },
+  title: {
+      marginLeft: scale(20),
+      fontFamily: FONT_FAMILY.Title,
+      fontSize: scale(32),
+      lineHeight: scale(32),
+      color: '#744ACC',
+  },
+  frame: {
+      top: scale(20),
+      justifyContent: 'center',
+      backgroundColor: '#FFFFFF',
+      borderRadius: scale(20),
+      marginHorizontal: scale(30),
+      marginTop: scale(20)
+  },
+  takePhotoButton: {
+    height: scale(70),
+    paddingLeft: scale(30),
+    justifyContent: 'center',
+    borderRadius: scale(20),
+    borderBottomWidth: 1,
+  },
+  lastButton: {
+    height: scale(70),
+    paddingLeft: scale(30),
+    justifyContent: 'center',
+    borderRadius: scale(20),
+  },
+  buttonText: {
+    justifyContent: 'center',
+    fontFamily: FONT_FAMILY.Body,
+    fontSize: scale(20),
+    color: '#000000',
+  },
 })

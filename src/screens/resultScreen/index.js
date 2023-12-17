@@ -1,5 +1,5 @@
 import { SafeAreaView, StyleSheet, Text, View,Image,
-  ScrollView,TouchableOpacity,PermissionsAndroid, Platform} from 'react-native'
+  ScrollView,TouchableOpacity,PermissionsAndroid, Platform, Dimensions} from 'react-native'
 import React, { useState,useEffect, useRef } from 'react'
 import scale from '../../constants/responsive'
 import { IC_Back,IC_Delete } from '../../assets/icons';
@@ -13,6 +13,9 @@ import ViewShot, { captureRef} from 'react-native-view-shot';
 import RNFetchBlob from 'rn-fetch-blob';
 import FONT_FAMILY from '../../constants/fonts';
 import { IMG_HLogo } from '../../assets/images';
+
+const { width, height } = Dimensions.get('window');
+const aspectRatio = height / width;
 
 const ResultScreen = (props) => {
   const {photo} = props.route.params;
@@ -317,67 +320,59 @@ export default ResultScreen
 
 const styles = StyleSheet.create({
   container: {
-    flex:1,
-    backgroundColor:'#F0F6FB',
+    flex: 1,
+    backgroundColor: '#F0F6FB',
   },
   title: {
-    //alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: scale(-20),
-    marginLeft:scale(40),
-    width: "90%",
-    height: "280%",
+    width: '90%',
+    aspectRatio: 6 / 1, // Adjust aspect ratio as per your design
+    alignSelf: 'center',
+    marginTop: height * 0.02,
+    marginLeft: width * 0.08,
   },
   photo: {
     width: '100%',
-    height: '100%',
-    borderRadius:28,
-    justifyContent:'center',
-    alignSelf:'center',
+    aspectRatio: 1, // Adjust aspect ratio as per your design
+    borderRadius: 28,
+    alignSelf: 'center',
+    marginTop: height * 0.02,
   },
   bottomTabs: {
     flexDirection: 'row',
     width: '95%',
-    height: 50,
-    borderRadius: 50,
-    alignSelf:'center',
-    alignContent: 'space-between',
-    marginTop: scale(20),
-    bottom: 5,
+    aspectRatio: 20 / 3, // Adjust aspect ratio as per your design
+    alignSelf: 'center',
+    marginTop: height * 0.02,
     backgroundColor: 'white',
   },
   touchTab: {
     flex: 1,
+    backgroundColor: 'white',
     borderRadius: 50,
     alignItems: 'center',
-    justifyContent:'center',
-    backgroundColor: 'white',
+    justifyContent: 'center',
   },
   touchTabChosen: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent:'center',
-    borderRadius: 50,
     backgroundColor: '#744ACC',
+    borderRadius: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   textTab: {
     color: '#744ACC',
-    fontFamily: FONT_FAMILY.Body,
-    fontSize: scale(17),
+    fontSize: width * 0.04, // Adjust font size as per your design
   },
   textTabChosen: {
     color: 'white',
-    fontFamily: FONT_FAMILY.Body,
-    fontSize: scale(17),
+    fontSize: width * 0.04, // Adjust font size as per your design
   },
   imgContainer: {
     width: '100%',
     height: '100%',
   },
   img: {
-    justifyContent: 'center',
-    alignSelf: 'center',
     width: '100%',
     height: '100%',
   }
-})
+});

@@ -1,4 +1,4 @@
-import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View, Image, ScrollView } from 'react-native'
+import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View, Image, ScrollView, Dimensions } from 'react-native'
 import React,{useEffect, useState} from 'react'
 import scale from '../../constants/responsive'
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
@@ -8,6 +8,8 @@ import {useSelector,useDispatch } from 'react-redux';
 import FONT_FAMILY from '../../constants/fonts';
 import { IMG_HLogo } from '../../assets/images';
 import Message from '../../constants/message';
+
+const { width, height } = Dimensions.get('window');
 
 const HomeScreen = (props) => {
     const [photo, setPhoto] = useState(null);
@@ -55,13 +57,10 @@ const HomeScreen = (props) => {
     //style={{marginLeft: scale(80), marginTop:scale(5), flexDirection:'row'}}
   return (
     <SafeAreaView style={styles.container}>
-        <View style={styles.title}>
-          {/* <TouchableOpacity onPress={() => props.navigation.goBack()}>
-            <IC_Back  stroke={'#744ACC'}/>
-          </TouchableOpacity> */}
-          <Image style={{width: '300%', height: '100%'}} source={IMG_HLogo}/>
+        <View style={[styles.title, { marginLeft: width * 0.2, marginTop: height * 0.01 }]}>
+          <Image style={{ width: '100%', height: '100%' }} source={IMG_HLogo} />
         </View>
-        <ScrollView style={{marginHorizontal:scale(30)}}>
+        <ScrollView style={{ marginHorizontal: width * 0.1 }}>
                 <TouchableOpacity style={styles.takePhotoButton} onPress={pickPhoto}>
                     <Text style={styles.buttonText}>Gallery</Text>
                     <IC_Gallery style={styles.icon}/>
