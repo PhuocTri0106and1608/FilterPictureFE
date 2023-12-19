@@ -3,9 +3,7 @@ import React, { useState } from 'react';
 import scale from '../../constants/responsive';
 import { IC_Back } from '../../assets/icons';
 import FONT_FAMILY from '../../constants/fonts';
-import { IMG_HLogo } from '../../assets/images';
 import Message from '../../constants/message';
-import { useEffect } from 'react';
 
 const { width, height } = Dimensions.get('window');
 const SettingScreen = (props) => {
@@ -24,7 +22,9 @@ const SettingScreen = (props) => {
     }
   return (
     <SafeAreaView style={styles.container}>
-        <View style={{ marginLeft: scale(20), marginTop: scale(40), flexDirection: 'row' }}>
+      <View style={{width: width*0.86, alignSelf:'center'}}>
+        <View style={{width: width*0.45,justifyContent: 'space-between',
+        alignSelf: 'flex-start', marginTop: height * 0.05, flexDirection: 'row' }}>
             <TouchableOpacity onPress={() => props.navigation.goBack()}>
                 <IC_Back />
             </TouchableOpacity>
@@ -39,7 +39,7 @@ const SettingScreen = (props) => {
                 <Text style={styles.buttonText}>Share Photo Transfer</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.lastButton} onPress={handleButtonPress1}>
+            <TouchableOpacity style={styles.helpButton} onPress={handleButtonPress1}>
                 <Text style={styles.buttonText}>Help</Text>
             </TouchableOpacity>
         </View>
@@ -49,6 +49,7 @@ const SettingScreen = (props) => {
             title={title}
             message={message}
         />
+      </View>
     </SafeAreaView>
   )
 }
@@ -61,37 +62,34 @@ const styles = StyleSheet.create({
     backgroundColor: '#F0F6FB',
   },
   title: {
-      marginLeft: scale(20),
       fontFamily: FONT_FAMILY.Title,
-      fontSize: scale(32),
-      lineHeight: scale(32),
+      fontSize: 32,
+      lineHeight: 32,
       color: '#744ACC',
   },
   frame: {
-      top: scale(20),
+      marginTop: height*0.05,
+      height: height*0.3,
+      gap: height*0.004,
       justifyContent: 'center',
       backgroundColor: '#FFFFFF',
-      borderRadius: scale(20),
-      marginHorizontal: scale(30),
-      marginTop: scale(20)
+      alignItems:'center',
+      borderRadius: 20,
   },
   takePhotoButton: {
-    height: scale(70),
-    paddingLeft: scale(30),
+    height: '30%',
+    width: '85%',
     justifyContent: 'center',
-    borderRadius: scale(20),
     borderBottomWidth: 1,
   },
-  lastButton: {
-    height: scale(70),
-    paddingLeft: scale(30),
+  helpButton: {
+    height: '27%',
+    width: '85%',
     justifyContent: 'center',
-    borderRadius: scale(20),
   },
   buttonText: {
-    justifyContent: 'center',
     fontFamily: FONT_FAMILY.Body,
-    fontSize: scale(20),
+    fontSize: 20,
     color: '#000000',
   },
 })

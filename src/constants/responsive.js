@@ -1,9 +1,9 @@
-const designWidth = 375;
+const { width: screenWidth, height: designHeight } = Dimensions.get('window');
 import {Dimensions} from 'react-native';
 
 export default function scale(number) {
   let scaleNumber;
-  const currentDeviceWidth = Dimensions.get('window').width;
-  scaleNumber = (number / designWidth) * currentDeviceWidth;
+  const currentDeviceHeight = Dimensions.get('window').height;
+  scaleNumber = (number / designHeight) * currentDeviceHeight;
   return scaleNumber;
 }

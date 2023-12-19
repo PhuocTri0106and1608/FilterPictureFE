@@ -181,73 +181,45 @@ const ResultScreen = (props) => {
           message={message}
         />
         {loading && <Loader />}
-          <View style={{marginLeft:scale(20), marginTop:scale(30), flexDirection:'row'}}>
+          <View style={{marginLeft:width*0.08, marginTop:height*0.03}}>
             <TouchableOpacity onPress={() => props.navigation.goBack()}>
               <IC_Back stroke={'#744ACC'}/>
             </TouchableOpacity>
-            <Image style={styles.title} source={IMG_HLogo}/>
+          </View>
+          <View style={styles.logo}>
+            <Image style={{ width: '100%', height: '100%' }} resizeMode='contain' source={IMG_HLogo} />
           </View>
           <ScrollView>        
-            <View style={{flexDirection:'column',marginTop:scale(20)}}>
-                <Text style={{fontFamily: FONT_FAMILY.Body,fontSize:scale(20),lineHeight:scale(20),color:'#744ACC',marginLeft:scale(20)}}>
+            <View style={{flexDirection:'column'}}>
+                <Text style={{fontFamily: FONT_FAMILY.Body,fontSize:21,lineHeight:20,color:'#744ACC',marginLeft:width*0.08}}>
                   Your image:
                 </Text>
-                <View style={{borderWidth:2, borderColor:'#744ACC', justifyContent:'center',borderRadius:30,
-                alignSelf:'center',width:scale(300),height:scale(300),marginTop:scale(20)}}>
-                  <Image source={{ uri: photo }} style={styles.photo} resizeMode='cover' />
+                <View style={{borderWidth:5, borderColor:'#744ACC', justifyContent:'center',borderRadius:33,
+                alignSelf:'center',width:width*0.8,height:height*0.38,marginTop:height*0.025}}>
+                  <Image source={{ uri: photo }} style={styles.photo} resizeMode='contain' />
                 </View>
-                {chosen === "" ? (
-                  <Text style={{fontFamily: FONT_FAMILY.Body,fontSize:scale(28),lineHeight:scale(24),color:'#744ACC',textAlign:'center',marginTop:scale(140)}}>
+                {chosen === undefined || chosen === "" ? (
+                  <Text style={{fontFamily: FONT_FAMILY.Body,fontSize:28,lineHeight:24,color:'#744ACC',textAlign:'center',marginTop:height*0.15}}>
                     Let's choose style!
                   </Text>
                 ):(<>
-                  <Text style={{fontFamily: FONT_FAMILY.Body,fontSize:scale(20),lineHeight:scale(20),color:'#744ACC',marginLeft:scale(20),marginTop:scale(20)}}>
+                  <Text style={{fontFamily: FONT_FAMILY.Body,fontSize:21,lineHeight:20,color:'#744ACC',marginLeft:width*0.08,marginTop:height*0.025}}>
                     {styleTittle} image:
                   </Text>
                   <TouchableOpacity onPress={() => setZoom(true)}
-                  style={{borderWidth:2, borderColor:'#744ACC', justifyContent:'center',borderRadius:30,
-                alignSelf:'center',width:scale(300),height:scale(300),marginTop:scale(20)}}>
+                  style={{borderWidth:5, borderColor:'#744ACC', justifyContent:'center',borderRadius:33,
+                  alignSelf:'center',width:width*0.8,height:height*0.38,marginTop:height*0.025}}>
                     <ViewShot ref={viewRef}>
                       <Image source={{ uri: chosen}} style={styles.photo} resizeMode='cover'/>
                     </ViewShot>
                   </TouchableOpacity>
-                  <TouchableOpacity style={{
-                    marginTop:scale(20),
-                    width: scale(300),
-                    height:scale(50),
-                    alignItems:'center',
-                    alignSelf:'center',
-                    justifyContent:'center',
-                    backgroundColor:'#744ACC',
-                    borderRadius:scale(20),
-                  }} onPress={checkPermission}>
-                    <Text style={{
-                    justifyContent:'center',
-                    fontWeight:'500',
-                    fontFamily: FONT_FAMILY.Body,
-                    fontSize: scale(20),
-                    lineHeight:scale(20),
-                    color:"#F0F6FB"}}>
+                  <TouchableOpacity style={styles.handleImageButton} onPress={checkPermission}>
+                    <Text style={styles.handleImageButtonText}>
                       Save
                     </Text>
                   </TouchableOpacity>
-                  <TouchableOpacity style={{
-                    marginTop:scale(20),
-                    width: scale(300),
-                    height:scale(50),
-                    alignItems:'center',
-                    alignSelf:'center',
-                    justifyContent:'center',
-                    backgroundColor:'#744ACC',
-                    borderRadius:scale(20),
-                  }} onPress={shareImage}>
-                    <Text style={{
-                    justifyContent:'center',
-                    fontWeight:'500',
-                    fontFamily: FONT_FAMILY.Body,
-                    fontSize: scale(20),
-                    lineHeight:scale(20),
-                    color:"#F0F6FB"}}>
+                  <TouchableOpacity style={styles.handleImageButton} onPress={shareImage}>
+                    <Text style={styles.handleImageButtonText}>
                       Share
                     </Text>
                   </TouchableOpacity>
@@ -323,24 +295,23 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F0F6FB',
   },
-  title: {
-    width: '90%',
-    aspectRatio: 6 / 1, // Adjust aspect ratio as per your design
-    alignSelf: 'center',
-    marginTop: height * 0.02,
-    marginLeft: width * 0.08,
+  logo: {
+    marginLeft: width * 0.16,
+    alignSelf: 'center', 
+    width: width * 1, 
+    height: height * 0.1
   },
   photo: {
     width: '100%',
-    aspectRatio: 1, // Adjust aspect ratio as per your design
+    height:'100%',
     borderRadius: 28,
     alignSelf: 'center',
-    marginTop: height * 0.02,
   },
   bottomTabs: {
     flexDirection: 'row',
+    height: height*0.08,
     width: '95%',
-    aspectRatio: 20 / 3, // Adjust aspect ratio as per your design
+    borderRadius: 50,
     alignSelf: 'center',
     marginTop: height * 0.02,
     backgroundColor: 'white',
@@ -361,11 +332,11 @@ const styles = StyleSheet.create({
   },
   textTab: {
     color: '#744ACC',
-    fontSize: width * 0.04, // Adjust font size as per your design
+    fontSize: width * 0.04,
   },
   textTabChosen: {
     color: 'white',
-    fontSize: width * 0.04, // Adjust font size as per your design
+    fontSize: width * 0.04,
   },
   imgContainer: {
     width: '100%',
@@ -374,5 +345,22 @@ const styles = StyleSheet.create({
   img: {
     width: '100%',
     height: '100%',
+  },
+  handleImageButton:{
+    marginTop:height*0.025,
+    width: width*0.8,
+    height:height*0.065,
+    alignItems:'center',
+    alignSelf:'center',
+    justifyContent:'center',
+    backgroundColor:'#744ACC',
+    borderRadius:20,
+  },
+  handleImageButtonText:{
+    fontWeight:'500',
+    fontFamily: FONT_FAMILY.Body,
+    fontSize: 20,
+    lineHeight:20,
+    color:"#F0F6FB"
   }
 });

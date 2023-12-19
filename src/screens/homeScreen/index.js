@@ -57,28 +57,34 @@ const HomeScreen = (props) => {
     //style={{marginLeft: scale(80), marginTop:scale(5), flexDirection:'row'}}
   return (
     <SafeAreaView style={styles.container}>
-        <View style={[styles.title, { marginLeft: width * 0.2, marginTop: height * 0.01 }]}>
-          <Image style={{ width: '100%', height: '100%' }} source={IMG_HLogo} />
+        <View style={styles.logo}>
+          <Image style={{ width: '100%', height: '100%' }} resizeMode='contain' source={IMG_HLogo} />
         </View>
-        <ScrollView style={{ marginHorizontal: width * 0.1 }}>
+        <ScrollView style={{ alignSelf: 'center'}}>
                 <TouchableOpacity style={styles.takePhotoButton} onPress={pickPhoto}>
-                    <Text style={styles.buttonText}>Gallery</Text>
-                    <IC_Gallery style={styles.icon}/>
+                    <View style={styles.buttonContent}>
+                        <Text style={styles.buttonText}>Gallery</Text>
+                        <IC_Gallery style={styles.icon}/>
+                    </View>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.takePhotoButton} onPress={takePhoto}>
+                  <View style={styles.buttonContent}>
                     <Text style={styles.buttonText}>Camera</Text>
                     <IC_Camera style={styles.icon}/>
+                  </View>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.takePhotoButton} onPress={() => props.navigation.navigate('SettingScreen')}>
+                  <View style={styles.buttonContent}>
                     <Text style={styles.buttonText}>Settings</Text>
                     <IC_Setting style={styles.icon}/>
+                  </View>
                 </TouchableOpacity>
-                <View style={{flexDirection:'column',marginTop:scale(20)}}>
-                    <Text style={{fontFamily: FONT_FAMILY.Body,fontSize:scale(20),lineHeight:scale(20),color:'#744ACC'}}>
+                <View style={{flexDirection:'column', marginTop: height * 0.03}}>
+                    <Text style={{fontFamily: FONT_FAMILY.Body,fontSize:20,lineHeight:20,color:'#744ACC'}}>
                       Review your image:
                     </Text>
-                    <View style={{borderWidth:2, borderColor:'#744ACC', justifyContent:'center',borderRadius:30,
-                    alignSelf:'center',width:scale(310),height:scale(300),marginTop:scale(15)}}>
+                    <View style={{borderWidth:5, borderColor:'#744ACC', justifyContent:'center',borderRadius:33,
+                alignSelf:'center',width:width*0.8,height:height*0.36,marginTop:height*0.025}}>
                       <Image source={{ uri: photo }} style={styles.photo} resizeMode='cover'/>
                     </View>
                     <>
@@ -110,58 +116,47 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '80%',
       },
-      photo: {
-        width: '100%',
-        height: '100%',
-        borderRadius:28,
-        justifyContent:'center',
-        alignSelf:'center',
-      },
-    title: {
-      //alignItems: 'center',
-      // justifyContent: 'center',
-      marginTop: scale(10),
-      marginLeft:scale(60),
-      // width: "70%",
-      // height: "215%",
-      //alignSelf: 'center',
-      width: '30%',
-      height: '10%',
+    photo: {
+      width: '100%',
+      height:'100%',
+      borderRadius: 28,
+      alignSelf: 'center',
+    },
+    logo: {
+      marginTop: height * 0.02,
+      marginLeft: width * 0.16,
+      alignSelf: 'center', 
+      width: width * 1, 
+      height: height * 0.1
     },
     takePhotoButton: {
-        marginTop:scale(15),
+        marginTop:height * 0.015,
         height:scale(70),
-        paddingLeft:scale(30),
+        paddingLeft:30,
+        flex: 1,
         justifyContent:'center',
         backgroundColor:'#744ACC',
-        borderRadius:scale(20),
+        borderRadius:20,
     },
     viewResultButton: {
-      marginTop:scale(40),
+      marginTop:height * 0.02,
       height:scale(70),
       alignItems:'center',
       justifyContent:'center',
       backgroundColor:'#744ACC',
-      borderRadius:scale(20),
+      borderRadius:20,
     },
-    viewResultButtonDisable: {
-      marginTop:scale(40),
-      height:scale(70),
-      alignItems:'center',
-      justifyContent:'center',
-      backgroundColor:'#808080',
-      borderRadius:scale(20),
+    buttonContent: {
+      width: '100%',
+      gap: width * 0.4,
+      flexDirection: 'row',
     },
     buttonText: {
-      justifyContent: 'center',
-        fontFamily: FONT_FAMILY.Body,
-       // fontWeight:'500',
-        fontSize: scale(20),
-        //lineHeight:scale(20),
-        color: '#F0F6FB',
+      fontFamily: FONT_FAMILY.Body,
+      fontSize: 20,
+      color: '#F0F6FB',
     },
     icon: {
-        marginLeft: scale(230), 
-        marginTop: scale(-22)
+        alignSelf:'flex-end',
     },
 })
