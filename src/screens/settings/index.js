@@ -1,6 +1,6 @@
 import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View, Image, ScrollView, Dimensions } from 'react-native';
 import React, { useState } from 'react';
-import scale from '../../constants/responsive';
+import Clipboard from '@react-native-clipboard/clipboard';
 import { IC_Back } from '../../assets/icons';
 import FONT_FAMILY from '../../constants/fonts';
 import Message from '../../constants/message';
@@ -11,9 +11,10 @@ const SettingScreen = (props) => {
     const [visible, setVisible] = useState(false);
     const [message, setMessage] = useState('');
     const handleButtonPress = () => {
-        setTitle("Copy link to share")
+        setTitle("Copied link to share")
         setVisible(true);
-        setMessage('Link');   
+        Clipboard.setString('https://play.google.com/store/apps/details?id=com.filterpicturern&pcampaignid=web_share');
+        setMessage('https://play.google.com/store/apps/details?id=com.filterpicturern&pcampaignid=web_share');   
     }
     const handleButtonPress1 = () => {
         setTitle("Send mail to")
