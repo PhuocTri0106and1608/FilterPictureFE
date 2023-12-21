@@ -198,7 +198,7 @@ const ResultScreen = (props) => {
                 alignSelf:'center',width:width*0.8,height:height*0.38,marginTop:height*0.025}}>
                   <Image source={{ uri: photo }} style={styles.photo} resizeMode='contain' />
                 </View>
-                {chosen === undefined || chosen === "" ? (
+                {chosen === "" ? (
                   <Text style={{fontFamily: FONT_FAMILY.Body,fontSize:28,lineHeight:24,color:'#744ACC',textAlign:'center',marginTop:height*0.15}}>
                     Let's choose style!
                   </Text>
